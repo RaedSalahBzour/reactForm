@@ -43,12 +43,14 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
 
   const submitForm = (data: FormValues) => {
     console.log("the data is", data);
+    reset();
   };
   return (
     <div className="form">
