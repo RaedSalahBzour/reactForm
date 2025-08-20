@@ -14,7 +14,14 @@ type FormValues = {
 
 const schema = yup
   .object({
-    firstName: yup.string().required("First Name is required"),
+    firstName: yup
+      .string()
+      .test(
+        "not-bahaa",
+        "The name 'bahaa' is in a black list",
+        value => value?.toLowerCase() !== "bahaa"
+      )
+      .required("First Name is required"),
     lastName: yup.string().required("Last Name is required"),
     email: yup
       .string()
@@ -76,7 +83,7 @@ function Form() {
           type="text"
           placeholder="Confirm Password"
           {...register("confirmPassword")}
-        />{" "}
+        />
         {errors.confirmPassword && (
           <p className="error">{errors.confirmPassword.message}</p>
         )}
