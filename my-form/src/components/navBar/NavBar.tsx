@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar() {
   const [value, setValue] = useState(0);
   const navigate = useNavigate();
+
   function handleNavigation(newValue: number) {
     setValue(newValue);
     switch (newValue) {
@@ -26,7 +27,7 @@ export default function NavBar() {
       <BottomNavigation
         showLabels
         value={value}
-        onChange={(event, newValue) => {
+        onChange={(_event, newValue) => {
           handleNavigation(newValue);
         }}
       >

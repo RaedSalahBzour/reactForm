@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-
+import { useAuth } from "../../hooks/useAuth";
 type FormValues = {
   email: string;
   password: string;
@@ -20,6 +20,7 @@ const schema = yup.object({
 });
 
 function Login() {
+  const { setAuth } = useAuth();
   const {
     register,
     handleSubmit,

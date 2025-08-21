@@ -17,7 +17,7 @@ const schema = yup.object({
     .string()
     .test(
       "not-bahaa",
-      "The name 'bahaa' is in a black list",
+      "The name 'bahaa' is in the black list",
       value => value?.toLowerCase() !== "bahaa"
     )
     .required("First Name is required"),
