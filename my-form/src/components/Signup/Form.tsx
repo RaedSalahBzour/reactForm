@@ -12,38 +12,36 @@ type FormValues = {
   confirmPassword: string;
 };
 
-const schema = yup
-  .object({
-    firstName: yup
-      .string()
-      .test(
-        "not-bahaa",
-        "The name 'bahaa' is in a black list",
-        value => value?.toLowerCase() !== "bahaa"
-      )
-      .required("First Name is required"),
-    lastName: yup.string().required("Last Name is required"),
-    email: yup
-      .string()
-      .email("Please enter a valid email address")
-      .required("Email is required"),
-    age: yup
-      .number()
-      .typeError("Age must be a number")
-      .positive("Age must be greater than zero")
-      .integer("Age must be an integer")
-      .required("Age is required"),
-    password: yup
-      .string()
-      .min(6, "Password must be at least 6 characters")
-      .max(12, "Password cannot be longer than 12 characters")
-      .required("Password is required"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password")], "Passwords must match")
-      .required("Confirm Password is required"),
-  })
-  .required();
+const schema = yup.object({
+  firstName: yup
+    .string()
+    .test(
+      "not-bahaa",
+      "The name 'bahaa' is in a black list",
+      value => value?.toLowerCase() !== "bahaa"
+    )
+    .required("First Name is required"),
+  lastName: yup.string().required("Last Name is required"),
+  email: yup
+    .string()
+    .email("Please enter a valid email address")
+    .required("Email is required"),
+  age: yup
+    .number()
+    .typeError("Age must be a number")
+    .positive("Age must be greater than zero")
+    .integer("Age must be an integer")
+    .required("Age is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .max(12, "Password cannot be longer than 12 characters")
+    .required("Password is required"),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password")], "Passwords must match")
+    .required("Confirm Password is required"),
+});
 
 function Form() {
   const {
